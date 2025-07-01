@@ -30,7 +30,7 @@ export const useTodos = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setTodos(data || []);
+      setTodos((data || []) as Todo[]);
     } catch (error) {
       console.error('Error fetching todos:', error);
       toast({
@@ -61,7 +61,7 @@ export const useTodos = () => {
         .single();
 
       if (error) throw error;
-      setTodos(prev => [data, ...prev]);
+      setTodos(prev => [data as Todo, ...prev]);
       toast({
         title: "Success",
         description: "Todo created successfully",
@@ -86,7 +86,7 @@ export const useTodos = () => {
         .single();
 
       if (error) throw error;
-      setTodos(prev => prev.map(todo => todo.id === id ? data : todo));
+      setTodos(prev => prev.map(todo => todo.id === id ? data as Todo : todo));
     } catch (error) {
       console.error('Error updating todo:', error);
       toast({
